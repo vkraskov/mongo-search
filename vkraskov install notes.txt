@@ -81,7 +81,12 @@ db.users.find({ $text: { $search: "aaron -toy" } }, { score: { $meta: "textScore
 
 
 
+### 
+### Advanced Searching
+### 
+### 
 
+https://code.tutsplus.com/full-text-search-in-mongodb--cms-24835t
 		
 
 
