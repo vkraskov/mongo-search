@@ -1,0 +1,89 @@
+
+
+# https://github.com/flolu/mongo-search
+# https://www.youtube.com/watch?v=Z05rVI5mhzE
+
+
+ssh -i /Users/vkraskovskiy/Downloads/ssh-key-2023-04-22.key ubuntu@193.122.56.248
+
+
+apt install -y python3-virtualenv
+virtualenv -p python3 venv_mongo_search
+source venv_mongo_search/bin/activate
+
+cd venv_mongo_search
+git clone https://github.com/flolu/mongo-search.git
+cd mongo-search
+git pull
+
+
+
+apt-get install -y docker
+apt-get install -y docker-compose
+
+
+# add 
+vi /etc/iptables/rules.v4
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 3000 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 4000 -j ACCEPT
+systemctl restart iptables
+iptables -F 
+ufw disable
+
+
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+exit & re-login 
+nvm ls-remote
+nvm install 14.18.0
+nvm alias default 14.18.0
+
+cd mongo-search/client
+npm install
+
+
+cd mongo-search
+npm install express mongodb cors
+npm install @types/express @types/mongodb @types/cors --save-dev
+
+
+
+docker-compose -f docker-compose.yml up --build
+
+cd ~/venv_mongo_search/mongo-search/
+npx ts-node fake-data.ts .env.local
+
+
+lsof -PiTCP -sTCP:LISTEN |grep 3000
+
+http://193.122.56.248:3000/search?query=gilbert
+http://193.122.56.248:3000/autocomplete?query=gilbe
+
+
+
+cd client 
+npm run dev
+http://193.122.56.248:4000/
+
+
+https://github.com/axios/axios
+
+
+docker exec -it mongo_search_mongodb  /bin/bash 
+mongosh "mongodb://admin:password@localhost:27017"
+use tutorial
+show collections
+db.users.getIndexes()
+db.users.find()
+
+
+db.users.find({ $text: { $search: "aaron -toy" } }, { score: { $meta: "textScore" } } ).sort({ score: { $meta: "textScore" } })
+
+
+
+
+		
+
+
+
+

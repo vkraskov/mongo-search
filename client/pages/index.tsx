@@ -22,7 +22,8 @@ export default function Home() {
     setLoading(true)
     setAutocompleteResults([])
     setValue('search', query)
-    const response = await axios.get(`http://localhost:3001/search?query=${query}`)
+    //const response = await axios.get(`http://localhost:3001/search?query=${query}`)
+    const response = await axios.get(`http://193.122.56.248:3000/search?query=${query}`)
     setSearchResults(response.data)
     setLoading(false)
   }
@@ -45,7 +46,8 @@ export default function Home() {
     setCurrentValue(query)
 
     if (query) {
-      const response = await axios.get(`http://localhost:3001/autocomplete?query=${query}`)
+      //const response = await axios.get(`http://localhost:3001/autocomplete?query=${query}`)
+      const response = await axios.get(`http://193.122.56.248:3000/search?query=${query}`)
       setAutocompleteResults(response.data.map((u: any) => u.fullName))
     } else {
       setAutocompleteResults([])

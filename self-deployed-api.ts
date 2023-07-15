@@ -6,7 +6,7 @@ import {User} from './util'
 
 const app = express()
 
-app.use(cors({credentials: true, origin: 'http://localhost:4000'}))
+app.use(cors({credentials: true, origin: 'http://193.122.56.248:4000'}))
 
 app.get('/search', async (req, res) => {
   const searchQuery = req.query.query as string
