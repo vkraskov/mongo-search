@@ -92,3 +92,76 @@ https://code.tutsplus.com/full-text-search-in-mongodb--cms-24835t
 
 
 
+
+export interface Page {
+  pageId: string
+  title: string
+  body: string
+  comments: string
+  labels: string
+  editors: string
+  fuzzy: string
+  url: string
+}
+
+
+docker exec -it mongo_search_mongodb  /bin/bash 
+mongosh "mongodb://admin:password@localhost:27017"
+use tutorial
+show collections
+
+
+db.pages.getIndexes()
+
+
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  {
+    v: 2,
+    key: { _fts: 'text', _ftsx: 1 },
+    name: 'ind_search_text',
+    weights: { body: 1, comments: 1, editors: 1, fuzzy: 1, labels: 1, title: 1 },
+    default_language: 'english',
+    language_override: 'language',
+    textIndexVersion: 3
+  }
+]
+
+db.pages.find()
+
+
+
+python genpage.py
+
+tutorial> db.pages.drop()
+python loadpages.py
+
+http://193.122.56.248:3000/search?query=autopilot
+
+
+wipe -reinstall
+Vasiliy Kraskovskiy, Martins Svirksts
+
+
+font-mono text-sm
+
+
+Intune manages and installs applications on devices using the Company Portal agent. Mandatory applications are always installed, while optional applications can be installed for user context. Enrollment status page is used to manage enrollments. OpenWayGroup ESP is used to define applications without which Autopilot deployment is not possible. See 101-2 Autopilot General Implementation for details.
+
+
+
+make one line summary (less than 20 words) of the following text ""
+
+wipe -deploy
+
+
+
+scp -i /Users/vkraskovskiy/Downloads/ssh-key-2023-04-22.key ubuntu@193.122.56.248://tmp/new/prep.py /tmp/new/
+
+
+
+
+
+
+
+

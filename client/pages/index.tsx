@@ -46,7 +46,7 @@ export default function Home() {
 
     if (query) {
       const response = await axios.get(`http://193.122.56.248:3000/search?query=${query}`) //, { headers: {'Origin': 'http://193.122.56.248:3000' }})
-      setAutocompleteResults(response.data.map((u: any) => u.fullName))
+      setAutocompleteResults(response.data.map((u: any) => u.title))
     } else {
       setAutocompleteResults([])
       setSearchResults([])
@@ -89,13 +89,13 @@ export default function Home() {
               <span className="font-bold">MongoDB</span> Text Search
             </p>
             <div>
-              <a href="https:flolu.de" target="_blank" rel="noopener noreferrer">
-                By <span className="font-bold">Florian Ludewig</span>
+              <a href="https:google.be" target="_blank" rel="noopener noreferrer">
+                By <span className="font-bold">Vasily Kraskovskiy</span>
               </a>
             </div>
           </div>
 
-          <div className="py-8 w-full max-w-md">
+          <div className="py-8 w-full">
             {/* Input field */}
             <form className="pb-2" onSubmit={handleSubmit(onFormSubmit)}>
               <input
@@ -136,11 +136,11 @@ export default function Home() {
               {searchResults.map((result, index) => {
                 return (
                   <div key={index} className="flex items-center space-x-4">
-                    <img src={result.avatar} alt="avatar" className="w-16 rounded-full"></img>
+                    <p className="font-regular">Wiki</p>
                     <div>
-                      <p className="font-bold">{result.fullName}</p>
-                      <p className="font-mono text-sm">{result.email}</p>
+                      <a href={result.url} target="_blank" rel="noopener noreferrer" className="font-bold">{result.title}</a>
                     </div>
+                      <p className="font-regular text-sm">by {result.editors}</p>
                   </div>
                 )
               })}
