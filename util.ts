@@ -1,7 +1,7 @@
 import * as mongodb from 'mongodb'
 
 export const MONGODB_DATABASE = 'tutorial'
-export const MONGODB_COLLECTION = 'users'
+export const MONGODB_COLLECTION = 'pages'
 
 const MONGODB_HOST = process.env.MONGODB_HOST!
 const MONGODB_USER = process.env.MONGODB_USERNAME
@@ -19,3 +19,20 @@ export interface User {
   registeredAt: Date
   country: string
 }
+
+export interface Page {
+  pageId: string
+  title: string
+  body: string
+  comments: string
+  labels: string
+  editors: string
+  fuzzy: string
+  url: string
+}
+
+export interface Word {
+  _id: string
+  count: number
+}
+

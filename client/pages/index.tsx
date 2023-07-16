@@ -45,8 +45,28 @@ export default function Home() {
     setCurrentValue(query)
 
     if (query) {
-      const response = await axios.get(`http://193.122.56.248:3000/search?query=${query}`) //, { headers: {'Origin': 'http://193.122.56.248:3000' }})
-      setAutocompleteResults(response.data.map((u: any) => u.title))
+      const response = await axios.get(`http://193.122.56.248:3000/autocomplete?query=${query}`) //, { headers: {'Origin': 'http://193.122.56.248:3000' }})
+      //
+//      console.log('Query:', query);
+//      let allWords = response.data.map((u) => u.title.split(' ')).flat();
+//      console.log('All words:', allWords);
+//      let matchingWords = allWords.filter((word) => word.toLowerCase().startsWith(query.toLowerCase()));
+//      console.log('Matching words:', matchingWords);
+//      let distinctMatchingWords = Array.from(new Set(matchingWords));
+//      console.log('Distinct matching words:', distinctMatchingWords);
+//      //
+//      let wordPairs = allWords.slice(0, -1).map((word, i) => `${word} ${allWords[i+1]}`);
+//      console.log('Word pairs:', wordPairs);
+//      //let matchingPairs = wordPairs.filter((pair) => pair.split(' ')[0].toLowerCase().startsWith(query.toLowerCase()));
+//      let matchingPairs = wordPairs.filter((word) => word.toLowerCase().startsWith(query.toLowerCase()));
+//      console.log('Matching pairs:', matchingPairs);
+//      let distinctMatchingPairs = Array.from(new Set(matchingPairs));
+//      console.log('Distinct matching pairs:', distinctMatchingPairs);
+//      //
+//      let autocompleteResults = distinctMatchingWords.concat(distinctMatchingPairs);
+//      console.log('Autocomplete results:', autocompleteResults);
+//      setAutocompleteResults(autocompleteResults)
+      setAutocompleteResults(response.data.map((u: any) => u._id))
     } else {
       setAutocompleteResults([])
       setSearchResults([])

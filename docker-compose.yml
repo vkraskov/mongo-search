@@ -21,11 +21,15 @@ services:
   mongodb:
     image: mongo:6
     container_name: mongo_search_mongodb
+    volumes:
+      - /data/db:/data/db
     ports:
       - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/null
 
   atlas-api:
     image: node:18

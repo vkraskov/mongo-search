@@ -158,6 +158,58 @@ wipe -deploy
 
 scp -i /Users/vkraskovskiy/Downloads/ssh-key-2023-04-22.key ubuntu@193.122.56.248://tmp/new/prep.py /tmp/new/
 
+/dev/sdc
+
+mkdir /wiki
+mkdir /data
+mount 
+# mkfs -t ext4 /dev/sdc
+# mount /dev/sdb /wiki
+zpool create mypool /dev/sdc
+
+zfs create mypool/wikifs
+# zfs destroy mypool/wikifs
+# zfs destroy mypool
+zfs create -o compression=on -o dedup=on -o mountpoint=/wiki mypool/wikifs 
+zfs create -o compression=on -o dedup=on -o mountpoint=/data mypool/data
+
+
+
+
+
+
+
+db.pages.find({ $text: {$search: "(?=.*hardware)", $caseSensitive: false, $diacriticSensitive: false} })
+
+
+
+
+
+python dict.py
+
+tutorial> db.combinedWordsPairs.aggregate([ { $match: { _id: { $regex: "^device", $options: 'i' }, count: { $gt: 1 } } }, { $sort: { count: 1 } }, { $limit: 10 }]);
+[
+  { _id: 'Devices under Windows', count: 2 },
+  { _id: 'device Wipe', count: 2 },
+  { _id: 'device it', count: 2 },
+  { _id: 'Devices under', count: 2 },
+  { _id: 'Devices Find', count: 2 },
+  { _id: 'Device gets', count: 2 },
+  { _id: 'device of all', count: 2 },
+  { _id: 'device of', count: 2 },
+  { _id: 'device is not', count: 2 },
+  { _id: 'Device gets joined', count: 2 }
+]
+
+
+
+find ./ -path ./client/.next -prune -o -type f -mmin -1440 
+find ./ -path ./client/.next -prune -o -type f -mmin -1440 -exec cp {} /tmp/new/ \;
+ls -l /tmp/new/
+
+scp -i /Users/vkraskovskiy/Downloads/ssh-key-2023-04-22.key "ubuntu@193.122.56.248:/tmp/new/*.*" /tmp/new/
+
+
 
 
 
