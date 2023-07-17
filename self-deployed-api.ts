@@ -58,7 +58,7 @@ app.get('/autocomplete', async (req, res) => {
       }
     },
     {
-      $sort: { count: -1 } // -1 for descending order
+      $sort: { count: 1 } // -1 for descending order
     },
     {
       $limit: 10

@@ -203,7 +203,7 @@ tutorial> db.combinedWordsPairs.aggregate([ { $match: { _id: { $regex: "^device"
 
 
 
-find ./ -path ./client/.next -prune -o -type f -mmin -1440 
+find ./ -path ./client/.next -prune -o -type f -mmin -1440 -exec ls -l {} \;
 find ./ -path ./client/.next -prune -o -type f -mmin -1440 -exec cp {} /tmp/new/ \;
 ls -l /tmp/new/
 
